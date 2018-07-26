@@ -57,7 +57,8 @@
   command: "iptables-save"
 
 - name: Pull ECS Agent Container
-  docker_container:
+  docker_image:
     state: present
     name: amazon-ecs-agent
     repository: amazon
+    tag: latest
