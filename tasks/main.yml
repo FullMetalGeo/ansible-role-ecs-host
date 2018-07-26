@@ -59,6 +59,4 @@
 - name: Pull ECS Agent Container
   docker_image:
     state: present
-    name: amazon-ecs-agent
-    repository: amazon
-    tag: latest
+    name: amazon/amazon-ecs-agent:latest
