@@ -23,7 +23,7 @@
       ECS_LOGLEVEL=info
 
 - name: Configure system routing
-  lineinefile:
+  lineinfile:
     path: /etc/sysctl.conf
     line: "net.ipv4.conf.all.route_localnet = 1"
   validate: "sysctl -p /etc/sysctl.conf"
