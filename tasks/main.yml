@@ -60,5 +60,4 @@
   docker_container:
     state: present
     name: amazon-ecs-agent
-    tag: latest
-    reponsitory: amazon
+    repository: amazon
