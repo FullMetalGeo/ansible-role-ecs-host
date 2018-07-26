@@ -56,17 +56,9 @@
 - name: Save IPtables rules
   command: "iptables-save"
 
-- name: Configure ECS Agent Container
+- name: Pull ECS Agent Container
   docker_container:
     state: present
-    name: ecs-agent
-    image: amazon/amazon-ecs-agent:latest
-    network_mode: host
-    detach: yes
-    restart_policy: always
-    env_file: /etc/ecs/ecs.config
-    volumes:
-      - /var/run:/var/run
-      - /var/log/ecs:/log
-      - /var/lib/ecs/data:/data
-      - /etc/ecs:/etc/ecs
+    name: amazon-ecs-agent
+    tag: latest
+    reponsitory: amazon
