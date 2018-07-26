@@ -58,7 +58,7 @@
 
 - name: Configure ECS Agent Container
   docker_container:
-    state: stopped
+    state: present
     name: ecs-agent
     image: amazon/amazon-ecs-agent:latest
     network_mode: host
