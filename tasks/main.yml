@@ -1,5 +1,8 @@
 ---
 # tasks file for ecs-host
+- include_tasks: efs.yml
+  when: include_efs
+
 - name: Download ssm agent
   get_url:
     dest: /tmp/amazon-ssm-agent.rpm

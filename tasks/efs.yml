@@ -1,0 +1,14 @@
+- name: Clone efs-utils
+  git:
+    repo: 'https://github.com/aws/efs-utils'
+    dest: /tmp/efs-utils
+
+- name: Make rpm
+  make:
+    chdir: /tmp/efs-utils
+    target: rpm
+
+- name: Install rpm
+  yum:
+    name: /tmp/efs-utils/build/amazon-efs-utils-*rpm
+
