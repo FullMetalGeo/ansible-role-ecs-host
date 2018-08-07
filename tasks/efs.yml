@@ -8,7 +8,15 @@
     chdir: /tmp/efs-utils
     target: rpm
 
+- name: Find RPM file
+  find:
+    paths: "/tmp/efs-utils/build"
+    patterns: "amazon-efs-utils*.rpm"
+  register: rpm_result
+
 - name: Install rpm
   yum:
-    name: /tmp/efs-utils/build/amazon-efs-utils-*rpm
+    name: "{{ item.path }}"
+    state: present
+  with_items: "{{ rpm_result.files }}"
 
