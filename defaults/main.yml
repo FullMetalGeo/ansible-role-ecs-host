@@ -1,2 +1,3 @@
 ---
 # defaults file for ecs-host
+include_efs: true
