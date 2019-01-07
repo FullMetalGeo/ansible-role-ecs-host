@@ -7,16 +7,38 @@
   make:
     chdir: /tmp/efs-utils
     target: rpm
+  when: ansible_os_family == 'RedHat'
 
 - name: Find RPM file
   find:
     paths: "/tmp/efs-utils/build"
     patterns: "amazon-efs-utils*.rpm"
   register: rpm_result
+  when: ansible_os_family == 'RedHat'
 
 - name: Install rpm
   yum:
     name: "{{ item.path }}"
     state: present
   with_items: "{{ rpm_result.files }}"
+  when: ansible_os_family == 'RedHat'
 
+- name: Make .deb file
+  command: build-deb.sh
+  args:
+    chdir: /tmp/efs-utils
+  when: ansible_os_family == 'Debian'
+
+- name: Find .deb file
+  find:
+    paths: "/tmp/efs-utils/build"
+    patterns: "amazon-efs-utils*.deb"
+  register: deb_result
+  when: ansible_os_family == 'Debian'
+
+- name: Install .deb
+  apt:
+    name: "{{ item.path }}"
+    state: present
+  with_items: "{{ deb_result.files }}"
+  when: ansible_os_family == 'Debian'

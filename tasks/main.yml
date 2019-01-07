@@ -3,15 +3,6 @@
 - include_tasks: efs.yml
   when: include_efs
 
-- name: Download ssm agent
-  get_url:
-    dest: /tmp/amazon-ssm-agent.rpm
-    url: https://amazon-ssm-eu-west-1.s3.amazonaws.com/latest/linux_amd64/amazon-ssm-agent.rpm
-
-- name: Install ssm agent
-  package:
-    name: /tmp/amazon-ssm-agent.rpm
-
 - name: Configure ECS config file
   blockinfile:
     create: yes
