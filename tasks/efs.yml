@@ -24,7 +24,7 @@
   when: ansible_os_family == 'RedHat'
 
 - name: Make .deb file
-  command: build-deb.sh
+  command: /tmp/efs-utils/build-deb.sh
   args:
     chdir: /tmp/efs-utils
   when: ansible_os_family == 'Debian'
