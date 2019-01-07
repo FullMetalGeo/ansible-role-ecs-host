@@ -38,7 +38,7 @@
 
 - name: Install .deb
   apt:
-    name: "{{ item.path }}"
+    deb: "{{ item.path }}"
     state: present
   with_items: "{{ deb_result.files }}"
   when: ansible_os_family == 'Debian'
