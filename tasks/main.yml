@@ -48,7 +48,7 @@
     to_ports: 51679
 
 - name: Save IPtables rules
-  command: "iptables-save"
+  shell: "netfilter-persistent save && netfilter-persistent reload"
 
 - name: Pull ECS Agent Container
   docker_image:
