@@ -15,6 +15,7 @@
       ECS_LOGFILE=/var/log/ecs-agent.log
       ECS_AVAILABLE_LOGGING_DRIVERS=["json-file","awslogs"]
       ECS_LOGLEVEL=info
+      ECS_ENGINE_TASK_CLEANUP_WAIT_DURATION=15m
 
 - name: Configure system routing
   lineinfile:
