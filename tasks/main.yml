@@ -59,3 +59,4 @@
   docker_image:
     state: present
     name: amazon/amazon-ecs-agent:latest
+  when: ansible_distribution != 'Amazon'
