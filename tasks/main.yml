@@ -22,6 +22,7 @@
     path: /etc/sysctl.conf
     line: "net.ipv4.conf.all.route_localnet = 1"
   register: task_result
+  when: ansible_distribution != 'Amazon'
 
 - name: Apply new routing
   command: "sysctl -p /etc/sysctl.conf"
@@ -36,6 +37,7 @@
     destination_port: 80
     to_destination: 127.0.0.1:51679
     jump: DNAT
+  when: ansible_distribution != 'Amazon'
 
 - name: Configure IPtables Output Rule
   iptables:
@@ -47,9 +49,11 @@
     match: tcp
     jump: REDIRECT
     to_ports: 51679
+  when: ansible_distribution != 'Amazon'
 
 - name: Save IPtables rules
   shell: "netfilter-persistent save && netfilter-persistent reload"
+  when: ansible_distribution != 'Amazon'
 
 - name: Pull ECS Agent Container
   docker_image:
